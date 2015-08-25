@@ -4,12 +4,12 @@ foo = 1.50;
 bar = {'foo', 10, 'baz'};
 
 % Save and convert variables
-save('tmp.mat');
-mat2m('tmp.mat', 'tmp2.m');
+save([projectpath '/tmp/matfile.mat']);
+mat2m([projectpath '/tmp/matfile.mat'], [projectpath '/tmp/mfile.m']);
 
 % Clear workspace and re-load file
 clear foo bar
-run('./tmp2.m');
+run([projectpath '/tmp/mfile.m']);
 
 % Assert that the values have not changed
 expect(exist('foo', 'var'));

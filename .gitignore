@@ -1,2 +1,2 @@
-tmp*.m
-*.mat
+tmp/*.m
+tmp/*.mat
