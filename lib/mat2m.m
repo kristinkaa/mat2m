@@ -22,30 +22,11 @@ function mat2m(matfilename, mfilename)
     assign_var(varlist{vidx}, remove_nonascii(eval(varlist{vidx})));
   end
 
-  % Try to open connection to file
-  fid = open_file_connection(mfilename, options);
+  Simulink.saveVars(mfilename, varlist{:}, ...
+    '-create', ...
+    '-maxlevels', 100, ...
+    '-maxnumel', 10000);
 
-  % Make sure to close file connection if an error occurs
-  try
-    Simulink.saveVars(mfilename, varlist{:}, ...
-      '-create', ...
-      '-maxlevels', 100, ...
-      '-maxnumel', 10000);
-  catch exception
-    fclose(fid);
-    rethrow(exception);
-  end
-
-  % Close file connection
-  fclose(fid);
-
-end
-
-function fid = open_file_connection(mfilename, options)
-% Establish file connection, making sure it's fresh
-  if exist(mfilename, 'file'), delete(mfilename); end
-  fid = fopen(mfilename, 'w+t', 'n', options.Encoding);
-  if fid == -1, error('Cannot open DCM file for write access'); end
 end
 
 function assign_var(varname, value)
