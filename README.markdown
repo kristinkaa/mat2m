@@ -1,7 +1,7 @@
 # Matlab \*.mat to \*.m Conversion
 
 `mat2m` is a Matlab data format conversion tool to generate `*.m` files from
-`*.mat` files.
+`*.mat` files by providing a thin wrapper to `Simulink.saveVars`.
 
 ## Installation
 
