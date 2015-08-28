@@ -1,16 +1,16 @@
-function mat2m(matfilename, mfilename)
+function mat2m(mat_filename, m_filename)
 %FUNCTION MAT2M
 % Convert a given *.mat file into a *.m file. The resulting *.m file can be
 % evaluated in the workspace and should have the same effect as loading the
 % *.m file.
 
   % Load *.mat file
-  load(matfilename);
+  load(mat_filename);
 
   % Compile list of variables to save
   varlist = who();
-  varlist(strcmp(varlist, 'matfilename')) = [];
-  varlist(strcmp(varlist, 'mfilename'))   = [];
+  varlist(strcmp(varlist, 'mat_filename')) = [];
+  varlist(strcmp(varlist, 'm_filename'))   = [];
 
   % Set default options
   options = struct();
@@ -22,7 +22,7 @@ function mat2m(matfilename, mfilename)
     assign_var(varlist{vidx}, remove_nonascii(eval(varlist{vidx})));
   end
 
-  Simulink.saveVars(mfilename, varlist{:}, ...
+  Simulink.saveVars(m_filename, varlist{:}, ...
     '-create', ...
     '-maxlevels', 100, ...
     '-maxnumel', 10000);
