@@ -54,6 +54,6 @@ function output = remove_nonascii(input)
     output = strrep(output, 'ß', 'ss');
     output = strrep(output, '²', '^2');
     output = strrep(output, '³', '^3');
-    output = regexprep(output,'[^a-zA-Z /\-_0-9&^\\$]','');
+    output = regexprep(output,'[^a-zA-Z /\-_0-9&^\\$\.]','');
   end
 end
